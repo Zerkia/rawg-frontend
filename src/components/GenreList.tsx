@@ -1,13 +1,22 @@
 // import useGenre from "../hooks/useGenre";
 import useData from "../hooks/useData";
 import { Genre } from "../hooks/useGenre";
-import { ListItem, HStack, Image, List, Text, Spinner, Button } from "@chakra-ui/react";
+import {
+  ListItem,
+  HStack,
+  Image,
+  List,
+  Text,
+  Spinner,
+  Button,
+} from "@chakra-ui/react";
 
 interface Props {
   onSelectedGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({onSelectedGenre}: Props) => {
+const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
   const { data: genres, error, isLoading } = useData<Genre>("genres");
   return (
     <>
@@ -27,7 +36,9 @@ const GenreList = ({onSelectedGenre}: Props) => {
                 objectFit={"cover"}
                 boxSize="45px"
               />
-              <Button mx={2} onClick={() => onSelectedGenre} variant="link">{genre.name}</Button>
+              <Button mx={2} onClick={() => onSelectedGenre} variant="link" colorScheme={selectedGenre?.id === genre.id ? "yellow" : "white"}>
+                {genre.name}
+              </Button>
             </HStack>
           </ListItem>
         </List>
