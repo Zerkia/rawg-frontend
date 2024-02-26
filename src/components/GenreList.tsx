@@ -36,7 +36,14 @@ const GenreList = ({ onSelectedGenre, selectedGenre }: Props) => {
                 objectFit={"cover"}
                 boxSize="45px"
               />
-              <Button mx={2} onClick={() => onSelectedGenre} variant="link" colorScheme={selectedGenre?.id === genre.id ? "yellow" : "white"}>
+              <Button
+                mx={2}
+                onClick={() => onSelectedGenre(genre)}
+                variant="link"
+                colorScheme={
+                  selectedGenre?.id === genre.id ? "yellow" : "white"
+                }
+              >
                 {genre.name}
               </Button>
             </HStack>
